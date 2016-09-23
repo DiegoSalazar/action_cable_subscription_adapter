@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Custom Subscription adapter to inject a redis_connector for ActionCable}
   spec.description   = %q{Implements a SubscriptionAdapter for ActionCable which uses a configurable Redis client.}
-  spec.homepage      = "http://github/.com/DiegoSalazar/todo"
+  spec.homepage      = "https://github.com/DiegoSalazar/action_cable_subscription_adapter"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
