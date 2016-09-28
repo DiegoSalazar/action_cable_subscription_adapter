@@ -2,7 +2,7 @@
 
 Implements a configuration option that allows you to inject a custom configurable Redis client
 For ActionCable to use in its SubscriptionAdapter. This is useful if you use something like Redis::Namespace
-Which needs to be configured with a Redis URL and Namespace name usually coming from ENV vars. Rail's `cable.yml` is insufficient for this because it doesn't allow configuration of the Redis client.
+Which needs to be configured with a Redis URL and Namespace name usually coming from ENV vars. Rail's `cable.yml` is insufficient for this because it only allows URL configuration of the Redis client. You can also use this gem to using distributed Redis with Makara.
 
 ## Installation
 
@@ -22,7 +22,22 @@ Or install it yourself as:
 
 ## Usage
 
-Inject a custom Redis client used by the ActionCable::SubscriptionAdapter
+Set the adapter in `config/cable.yml`
+
+```
+development:
+  adapter: custom_adapter
+
+test:
+  adapter: async
+
+production:
+  adapter: custom_adapter
+```
+
+The `custom_adapter` will make ActionCable load this gem's SubscriptionAdapter rather than its built in one. Then...
+
+Create an initializer and set your custom Redis client.
 Example:
 
 ```ruby
@@ -43,7 +58,7 @@ ActionCableSubscriptionAdapter.config do |c|
 end
 ```
 
-The custom Redis client needs to conform to the [Redis](https://github.com/redis/redis-rb) gem's API.
+The custom Redis client needs to conform to the [redis-rb](https://github.com/redis/redis-rb) gem's API.
 
 ## Development
 
