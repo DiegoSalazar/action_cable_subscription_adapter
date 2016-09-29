@@ -83,7 +83,7 @@ ActionCableSubscriptionAdapter.config do |c|
 end
 ```
 
-Since ActionCable runs in threads, each thread will call `redis_connector` when subscribing the channel, using a proc in this way means a new instance of the Redis client will connect and therefore have its own TCP socket.
+Since ActionCable runs in threads, each thread will call `redis_connector` when subscribing to the channel. Using a proc in this way means a new instance of the Redis client will connect in each thread and therefore each redis client instance will have its own TCP socket.
 
 ## Development
 
