@@ -48,7 +48,27 @@ ActionCableSubscriptionAdapter.config do |c|
 end
 ```
 
+You can also assign a proc to `c.redis_connector`:
+
+```ruby
+ActionCableSubscriptionAdapter.config do |c|
+  c.redis_connector = ->(subscription_adapter) { MyRedisClient.new your: "options" }
+end
+```
+
+### Note
+
 The custom Redis client needs to conform to the [redis-rb](https://github.com/redis/redis-rb) gem's API.
+
+In the case of Redis::Namespace you have to `stream_from` the namespaced channel. In your channel object where you declare `stream_from` do something like this:
+
+```ruby
+class YourChannel < ApplicationCable::Channel
+  def subscribed
+    stream_from "your_namespace:your_channel"
+  end
+end
+```
 
 ## Development
 
