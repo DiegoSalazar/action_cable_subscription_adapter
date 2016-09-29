@@ -48,16 +48,6 @@ ActionCableSubscriptionAdapter.config do |c|
 end
 ```
 
-You can also pass a block that will run when the ActionCable workers are initialized:
-
-```ruby
-ActionCableSubscriptionAdapter.config do |c|
-  c.redis_connector = ->(subscription_adapter) { 
-    MyRedisClient.new your: "options"
-  }
-end
-```
-
 The custom Redis client needs to conform to the [redis-rb](https://github.com/redis/redis-rb) gem's API.
 
 ## Development
