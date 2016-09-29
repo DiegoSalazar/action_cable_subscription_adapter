@@ -56,9 +56,11 @@ ActionCableSubscriptionAdapter.config do |c|
 end
 ```
 
-### Note
+### Custom Redis Client
 
 The custom Redis client needs to conform to the [redis-rb](https://github.com/redis/redis-rb) gem's API.
+
+### Redis::Namespace
 
 In the case of Redis::Namespace you have to `stream_from` the namespaced channel. In your channel object where you declare `stream_from` do something like this:
 
@@ -69,6 +71,8 @@ class YourChannel < ApplicationCable::Channel
   end
 end
 ```
+
+### Multiprocess Servers
 
 If you're using a multiprocess server such as Puma or Unicorn you need to create a new instance of the Redis client by using a proc for the `redis_connector`.
 Example:
