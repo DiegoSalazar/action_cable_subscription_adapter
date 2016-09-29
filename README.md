@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Set the adapter in `config/cable.yml`
+Set the `custom_adapter` in the `adapter` option in `config/cable.yml`
 
 ```
 development:
@@ -35,7 +35,7 @@ production:
   adapter: custom_adapter
 ```
 
-The `custom_adapter` will make ActionCable load this gem's SubscriptionAdapter rather than its built in one. Then...
+The `custom_adapter` will make ActionCable load this gem's SubscriptionAdapter rather than the Rails built in one. Then...
 
 Create an initializer and set your custom Redis client.
 Example:
