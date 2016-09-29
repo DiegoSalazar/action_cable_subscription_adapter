@@ -4,9 +4,7 @@ require "action_cable/subscription_adapter/redis"
 module ActionCable::SubscriptionAdapter
   class CustomAdapter < Redis
     def redis_connection
-      r=ActionCableSubscriptionAdapter.redis_connector.call self
-      Rails.logger.info "ActionCableSubscriptionAdapter: #{r}"
-      r
+      ActionCableSubscriptionAdapter.redis_connector
     end
   end  
 end
