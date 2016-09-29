@@ -70,6 +70,17 @@ class YourChannel < ApplicationCable::Channel
 end
 ```
 
+If you're using a multiprocess server such as Puma or Unicorn you need to create a new instance of the Redis client by using a proc for the `redis_connector`.
+Example:
+
+```ruby
+ActionCableSubscriptionAdapter.config do |c|
+  c.redis_connector = ->(*) { Redis::Namespace.new REDIS_NAMESPACE, redis: Redis.new(url: REDIS_URL) }
+end
+```
+
+Since ActionCable runs in threads, each thread will call `redis_connector` when subscribing the channel, using a proc in this way means a new instance of the Redis client will connect and therefore have its own TCP socket.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
