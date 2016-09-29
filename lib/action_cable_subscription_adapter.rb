@@ -23,7 +23,7 @@ module ActionCableSubscriptionAdapter
 
   def self.config(&block)
     block.call self
-    self.redis_connector = ->(s) { redis_connector } unless redis_connector.respond_to? :call
+    self.redis_connector = ->(s) { redis_connector } unless redis_connector.is_a? Proc
     self
   end
 end
