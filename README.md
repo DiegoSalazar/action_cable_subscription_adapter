@@ -1,6 +1,6 @@
 # ActionCableSubscriptionAdapter
 
-Implements a configuration option that allows you to inject a any Redis client for ActionCable to use in its SubscriptionAdapter. 
+Implements a configuration option that allows you to inject any Redis client for ActionCable to use in its SubscriptionAdapter. 
 
 This is useful if you use something like Redis::Namespace which needs to be configured with a Redis URL and Namespace name usually coming from ENV vars. Rail's `cable.yml` is insufficient for this because it only allows URL configuration of the Redis client. You can also use this gem if you're using distributed Redis with Makara.
 
